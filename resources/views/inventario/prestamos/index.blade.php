@@ -27,6 +27,7 @@
       <div class="col-md-12">
         <div class="tile">
           <div class="tile-body">
+            <div class="table-responsive">
             <table class="table table-hover table-bordered" id="sampleTable">
               <thead>
                 <tr>
@@ -109,6 +110,7 @@
                 </tr> --}}
               </tbody>
             </table>
+          </div>
           </div>
         </div>
       </div>
