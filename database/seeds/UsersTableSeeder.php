@@ -15,8 +15,8 @@ class UsersTableSeeder extends Seeder
         	'name' => 'Administrador',
             'rut' => '12121212121',
             'telefono' => '1212123434343',
-        	'email' => 'admin@gmail.com',
-        	'password' => bcrypt('123456')
+        	'email' => 'admin@eiche.cl',
+        	'password' => bcrypt('EICHE_INVENTA')
         ]);
     }
 }
