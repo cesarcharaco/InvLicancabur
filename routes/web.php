@@ -24,7 +24,12 @@ Route::post('solicitantes/cambiar_status','SolicitantesController@cambiar_status
 Route::resource('insumos','InsumosController');
 Route::resource('gerencias','GerenciasController');
 Route::resource('areas','AreasController');
+
+Route::post('prestamos/cambiar_status','PrestamosController@cambiar_status')->name('prestamos.cambiar_status');
+Route::get('/prestamos/historial','PrestamosController@historial')->name('prestamos.historial');
+Route::post('prestamos/deshacer','PrestamosController@deshacer_prestamo')->name('prestamos.deshacer');
 Route::resource('prestamos','PrestamosController');
+
 Route::get('insumos/{id_gerencia}/buscar','PrestamosController@buscar_insumos');
 Route::get('insumos/{id_insumo}/buscar_existencia','PrestamosController@buscar_existencia');
 /*Route::get('inventario/insumos', function () {

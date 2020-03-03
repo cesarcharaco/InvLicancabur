@@ -17,10 +17,31 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="page-header">
-          <h2 class="mb-3 line-head" id="indicators">Préstamos
-            <a class="btn btn-primary icon-btn pull-right" href="{{ route('prestamos.create') }}"><i class="fa fa-plus"></i>Registrar préstamo</a>
+          <h2 class="mb-3 line-head" id="indicators"> &nbsp;&nbsp;Préstamos
+            <a class="btn btn-primary icon-btn pull-right" href="{{ route('prestamos.create') }}"><i class="fa fa-plus"></i>Registrar Préstamo</a>
+            <a class="btn btn-info icon-btn pull-left" href="{{ route('prestamos.historial') }}"><i class="fa fa-plus"></i>Historial</a>
           </h2>
         </div>
+        <div class="basic-tb-hd text-center">
+          
+          @if(count($errors))
+          <div class="alert-list m-4">
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                          aria-hidden="true">&times;</span></button>
+                  <ul>
+                      @foreach($errors->all() as $error)
+                      <li>
+                          {{$error}}
+                      </li>
+                      @endforeach
+
+                  </ul>
+              </div>
+          </div>
+          @endif
+          @include('flash::message')
+      </div>
       </div>
     </div>
     <div class="row">
@@ -64,50 +85,17 @@
                     @endif
                     
                   <td>
-                    <a href="" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Editar prestamo"><i class="fa fa-edit"></i></a>
-                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminar_prestamo"><i class="fa fa-trash"></i></button>
+                    <a href="{{ route('prestamos.edit',$key->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Editar Préstamo"><i class="fa fa-edit"></i></a>
+                    <button class="btn btn-danger btn-sm" onclick="eliminar_prestamo({{ $key->id }})" data-toggle="modal" data-target="#eliminar_prestamo"><i class="fa fa-trash"></i></button>
+                    @if($key->tipo=="Prestar")
+                    <a href="#" data-toggle="tooltip" class="btn btn-secondary btn-sm" data-placement="top" title="Cambiar status del Préstamo" onclick="status('{{ $key->id }}')" id="cambiar_status">
+                    <i class="fa fa-lock" data-toggle="modal" data-target="#myModaltwo"></i>
+                    </a>
+                    @endif
                   </td>
                 </tr>
                 @endforeach
-                {{-- <tr>
-                  <td>Carlos Fuente</td>
-                  <td>25498754</td>
-                  <td>Lápiz</td>
-                  <td>SFG452</td>
-                  <td>01/11/2019</td>
-                  <td>05/11/2019</td>
-                  <td><span class="badge badge-warning">En uso</span></td>
-                  <td>
-                    <a href="" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Editar prestamo"><i class="fa fa-edit"></i></a>
-                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminar_prestamo"><i class="fa fa-trash"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Esteban Colina</td>
-                  <td>12457854</td>
-                  <td>Computador</td>
-                  <td>FG45A4</td>
-                  <td>15/11/2019</td>
-                  <td>17/11/2019</td>
-                  <td><span class="badge badge-success">Entregado</span></td>
-                  <td>
-                    <a href="" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Editar prestamo"><i class="fa fa-edit"></i></a>
-                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminar_prestamo"><i class="fa fa-trash"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Luis Blanco</td>
-                  <td>35648754</td>
-                  <td>Compresor</td>
-                  <td>125478</td>
-                  <td>05/12/2019</td>
-                  <td>10/12/2019</td>
-                  <td><span class="badge badge-danger">Entregado con observaciones</span></td>
-                  <td>
-                    <a href="" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Editar prestamo"><i class="fa fa-edit"></i></a>
-                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminar_prestamo"><i class="fa fa-trash"></i></button>
-                  </td>
-                </tr> --}}
+                
               </tbody>
             </table>
           </div>
@@ -122,21 +110,68 @@
   <div class="modal" id="eliminar_prestamo">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <form action="">
+        {!! Form::open(['route' => ['prestamos.destroy',1033], 'method' => 'DELETE']) !!}
           <div class="modal-header">
-            <h5 class="modal-title"><i class="fa fa-trash"></i> Eliminar prestamo</h5>
+            <h5 class="modal-title"><i class="fa fa-trash"></i> Eliminar Préstamo</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
           </div>
           <div class="modal-body">
-            <p>¿Estas seguro que desea eliminar a este prestamo?</p>
+            <p>¿Estas seguro que desea eliminar a este préstamo?</p>
           </div>
+          <input type="hidden" name="id_prestamo" id="id_prestamo1">
           <div class="modal-footer">
             <button class="btn btn-danger" type="submit">Eliminar</button>
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
           </div>          
-        </form>
+        {!! Form::close() !!}
       </div>
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="myModaltwo" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><i class="fa fa-lock"></i> Cambiar Status de Préstamo</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            {!! Form::open(['route' => ['prestamos.cambiar_status'], 'method' => 'POST', 'name' => 'cambiar_status', 'id' => 'cambiar_status', 'data-parsley-validate']) !!}
+            @csrf
+            <div class="modal-body">
+                {{-- <h2>Cambiar de status del Solicitante</h2> --}}
+                <p>¿Estas seguro que desea cambiar de status a este préstamo?.</p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="status"><b>Status</b> <b style="color: red;">*</b></label>
+                            <input type="hidden" id="id_prestamo2" name="id_prestamo">
+                            <select name="status" id="status" class="form-control" required="required">
+                                <option value="Devuelto">Devuelto</option>
+                                <option value="Sin Devolver">Sin Devolver</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-default">Cambiar status</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+            {!! Form::close() !!}
+        </div>
+    </div>
+</div>
+@endsection
+@section('scripts')
+<script type="text/javascript">
+  function eliminar_prestamo(id_prestamo) {
+    $("#id_prestamo1").val(id_prestamo);
+  }
+
+  function status(id_prestamo) {
+    $("#id_prestamo2").val(id_prestamo);
+  }
+
+</script>
 @endsection
