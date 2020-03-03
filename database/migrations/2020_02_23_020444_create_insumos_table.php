@@ -26,8 +26,9 @@ class CreateInsumosTable extends Migration
             $table->integer('in_almacen')->default(0);
             $table->integer('out_almacen')->default(0);
             $table->integer('disponibles')->default(0);
-            $table->integer('entregados')->default(0)->nullable();
-            $table->integer('en_reparacion')->default(0)->nullable();
+            $table->integer('entregados')->nullable();
+            $table->integer('en_reparacion')->nullable();
+            $table->integer('inservible')->nullable();
 
             $table->foreign('id_gerencia')->references('id')->on('gerencias')->onDelete('cascade');
             $table->timestamps();

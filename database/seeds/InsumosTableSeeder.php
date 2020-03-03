@@ -24,7 +24,8 @@ class InsumosTableSeeder extends Seeder
         	'out_almacen' => 100,
         	'disponibles' => 300,
             'entregados' => 0,
-        	'en_reparacion' => 0
+        	'en_reparacion' => 0,
+            'inservible' => 0
 
         ]);
 
@@ -41,7 +42,8 @@ class InsumosTableSeeder extends Seeder
         	'out_almacen' => 100,
         	'disponibles' => 300,
             'entregados' => 0,
-        	'en_reparacion' => 0
+        	'en_reparacion' => 0,
+            'inservible' => 0
 
         ]);
 
@@ -58,7 +60,8 @@ class InsumosTableSeeder extends Seeder
         	'out_almacen' => 100,
         	'disponibles' => 300,
             'entregados' => 0,
-        	'en_reparacion' => 0
+        	'en_reparacion' => 0,
+            'inservible' => 0
 
         ]);
 
@@ -75,7 +78,8 @@ class InsumosTableSeeder extends Seeder
         	'out_almacen' => 100,
         	'disponibles' => 300,
             'entregados' => 0,
-        	'en_reparacion' => 0
+        	'en_reparacion' => 0,
+            'inservible' => 0
 
         ]);
     }

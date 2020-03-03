@@ -26,7 +26,7 @@ Route::resource('gerencias','GerenciasController');
 Route::resource('areas','AreasController');
 Route::resource('prestamos','PrestamosController');
 Route::get('insumos/{id_gerencia}/buscar','PrestamosController@buscar_insumos');
-
+Route::get('insumos/{id_insumo}/buscar_existencia','PrestamosController@buscar_existencia');
 /*Route::get('inventario/insumos', function () {
     return view('inventario/insumos/index');
 });

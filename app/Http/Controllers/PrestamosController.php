@@ -52,8 +52,141 @@ class PrestamosController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        //dd($request->all());
+        if ($request->todos==null) {
+            # para registrar uno o varios solicitantes
+            
+            if ($request->id_solicitante==null) {
+                flash('<i class="fa fa-check-circle-o"></i> Debe seleccionar al menos un Solicitante!')->warning()->important();
+                return redirect()->back();
+            }else{
+                if ($request->id_gerencia==null) {
+                    flash('<i class="fa fa-check-circle-o"></i> Debe seleccionar una Gerencia!')->warning()->important();
+                    return redirect()->back();
+                } else {
+                    if ($request->id_insumo==null) {
+                    flash('<i class="fa fa-check-circle-o"></i> Debe seleccionar un Insumo!')->warning()->important();
+                    return redirect()->back();
+                    } else {
+                        if ($request->fecha_prestamo==null) {
+                        flash('<i class="fa fa-check-circle-o"></i> Debe seleccionar una Gerencia!')->warning()->important();
+                        return redirect()->back();
+                        } else {
+                            $disponible=$this->buscar_existencia($request->id_insumo);
+                            if ($request->cantidad>$disponible) {
+                                flash('<i class="fa fa-check-circle-o"></i> La Cantidad a solicitar no puede ser mayor a la disponible del insumo seleccionado!')->warning()->important();
+                                return redirect()->back();
+                            } else {
+                                for ($i=0; $i < count($request->id_solicitante) ; $i++) { 
+                                        //actualizando existencias
+                                        $insumo=Insumos::find($request->id_insumo);
+                                        $insumo->in_almacen=$insumo->in_almacen-$request->cantidad;
+                                        $insumo->out_almacen=$insumo->out_almacen+$request->cantidad;
+                                        $insumo->disponibles=$insumo->disponibles-$request->cantidad;
+
+                                    if ($request->tipo=="Prestar") {
+                                        $insumo->save();
+                                    }else{
+                                        $insumo->entregados=$insumo->entregados+$request->cantidad;
+                                        $insumo->existencia=$insumo->existencia-$request->cantidad;
+                                        $insumo->save();
+                                    }
+                                    //registrando prestamo
+                                        $prestamo=new Prestamos();
+                                        $prestamo->id_solicitante=$request->id_solicitante[$i];
+                                        $prestamo->id_insumo=$request->id_insumo;
+                                        $prestamo->tipo=$request->tipo;
+                                        $prestamo->observacion=$request->observacion;
+                                        $prestamo->fecha_prestamo=$request->fecha_prestamo;
+                                        if ($request->tipo=="Entregar") {
+                                           $prestamo->status="No Aplica";
+                                        }
+                                        
+                                        $prestamo->cantidad=$request->cantidad;
+                                        $prestamo->save();                                        
+                                }
+                                if ($request->tipo=="Prestar") {
+                                flash('<i class="fa fa-check-circle-o"></i> Préstamo Realizado exitosamente!')->warning()->important();
+                                return redirect()->to('prestamos');
+                                } else {
+                                    flash('<i class="fa fa-check-circle-o"></i> Entrega Realizada exitosamente!')->warning()->important();
+                                    return redirect()->to('prestamos');
+                                }
+                            }
+                            
+                        }
+                    }    
+                }
+                
+            }
+        } else {
+            # para registrarlos todos
+            if ($request->id_gerencia==null) {
+                flash('<i class="fa fa-check-circle-o"></i> Debe seleccionar una Gerencia!')->warning()->important();
+                return redirect()->back();
+            } else {
+                if ($request->id_insumo==null) {
+                flash('<i class="fa fa-check-circle-o"></i> Debe seleccionar un Insumo!')->warning()->important();
+                return redirect()->back();
+                } else {
+                    if ($request->fecha_prestamo==null) {
+                    flash('<i class="fa fa-check-circle-o"></i> Debe seleccionar una Gerencia!')->warning()->important();
+                    return redirect()->back();
+                    } else {
+                        $disponible=$this->buscar_existencia($request->id_insumo);
+                        if ($request->cantidad>$disponible) {
+                            flash('<i class="fa fa-check-circle-o"></i> La Cantidad a solicitar no puede ser mayor a la disponible del insumo seleccionado!')->warning()->important();
+                            return redirect()->back();
+                        } else {
+                            $solicitantes=Solicitantes::where('status','Activo')->get();
+                            if (count($solicitantes)>0) {
+                            
+                            foreach ($solicitantes as $key) {
+                                    //actualizando existencias
+                                    $insumo=Insumos::find($request->id_insumo);
+                                    $insumo->in_almacen=$insumo->in_almacen-$request->cantidad;
+                                    $insumo->out_almacen=$insumo->out_almacen+$request->cantidad;
+                                    $insumo->disponibles=$insumo->disponibles-$request->cantidad;
+                                    
+                                if ($request->tipo=="Prestar") {
+                                    $insumo->save();
+                                }else{
+                                    $insumo->entregados=$insumo->entregados+$request->cantidad;
+                                    $insumo->existencia=$insumo->existencia-$request->cantidad;
+                                    $insumo->save();
+                                }
+                                //registrando prestamo
+                                    $prestamo=new Prestamos();
+                                    $prestamo->id_solicitante=$key->id;
+                                    $prestamo->id_insumo=$request->id_insumo;
+                                    $prestamo->tipo=$request->tipo;
+                                    $prestamo->observacion=$request->observacion;
+                                    $prestamo->fecha_prestamo=$request->fecha_prestamo;
+                                    if ($request->tipo=="Entregar") {
+                                           $prestamo->status="No Aplica";
+                                        }
+                                    $prestamo->cantidad=$request->cantidad;
+                                    $prestamo->save();                                        
+                            }
+                            if ($request->tipo=="Prestar") {
+                                flash('<i class="fa fa-check-circle-o"></i> Préstamo Realizado exitosamente!')->warning()->important();
+                                return redirect()->to('prestamos');
+                            } else {
+                                flash('<i class="fa fa-check-circle-o"></i> Entrega Realizada exitosamente!')->warning()->important();
+                                return redirect()->to('prestamos');
+                            }
+                                
+                            } else {
+                                flash('<i class="fa fa-check-circle-o"></i> No existen solicitantes activos registrados!')->warning()->important();
+                                return redirect()->back();
+                            }
+                        }
+                        
+                    }
+                }    
+            }
+        }//fin del else de todos
+    }//fin de la funcion store
 
     /**
      * Display the specified resource.
@@ -98,5 +231,11 @@ class PrestamosController extends Controller
     public function destroy(Prestamos $prestamos)
     {
         //
+    }
+
+    public function buscar_existencia($id_insumo)
+    {
+        $insumo=Insumos::find($id_insumo);
+        return $insumo->disponibles;
     }
 }
