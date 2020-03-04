@@ -13,7 +13,7 @@
       <ul class="treeview-menu">
         <li><a class="treeview-item {{ Request::is('insumos') ? 'active':'' }}" href="{{ route('insumos.index') }}"><i class="icon fa fa-circle-o"></i> Insumos</a></li>
         <li><a class="treeview-item {{ Request::is('prestamos') ? 'active':'' }}" href="{{ route('prestamos.index') }}" rel="noopener"><i class="icon fa fa-circle-o"></i> Préstamo</a></li>
-        <li><a class="treeview-item {{ Request::is('inventario/incidencias*') ? 'active':'' }}" href="{{ url('inventario/incidencias') }}" rel="noopener"><i class="icon fa fa-circle-o"></i> Incidencias</a></li>
+        <li><a class="treeview-item {{ Request::is('incidencias') ? 'active':'' }}" href="{{ route('incidencias.index') }}" rel="noopener"><i class="icon fa fa-circle-o"></i> Incidencias</a></li>
       </ul>
     </li>
     <li><a class="app-menu__item {{ Request::is('solicitantes') ? 'active':'' }}" href="{{ route('solicitantes.index') }}"><i class="app-menu__icon fa fa-users"></i><span class="app-menu__label">Solicitantes</span></a></li>

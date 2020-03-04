@@ -32,6 +32,9 @@ Route::resource('prestamos','PrestamosController');
 
 Route::get('insumos/{id_gerencia}/buscar','PrestamosController@buscar_insumos');
 Route::get('insumos/{id_insumo}/buscar_existencia','PrestamosController@buscar_existencia');
+
+Route::get('/incidencias/historial','IncidenciasController@historial')->name('incidencias.historial');
+Route::resource('incidencias','IncidenciasController');
 /*Route::get('inventario/insumos', function () {
     return view('inventario/insumos/index');
 });
@@ -47,12 +50,12 @@ Route::get('inventario/prestamos/create', function () {
 });
 */
 
-Route::get('inventario/incidencias', function () {
+/*Route::get('inventario/incidencias', function () {
     return view('inventario/incidencias/index');
 });
 Route::get('inventario/incidencias/create', function () {
     return view('inventario/incidencias/create');
-});
+});*/
 
 /*Route::get('solicitantes', function () {
     return view('solicitantes/index');

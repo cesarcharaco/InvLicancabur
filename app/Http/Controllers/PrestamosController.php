@@ -73,7 +73,7 @@ class PrestamosController extends Controller
                     return redirect()->back();
                     } else {
                         if ($request->fecha_prestamo==null) {
-                        flash('<i class="fa fa-check-circle-o"></i> Debe seleccionar una Gerencia!')->warning()->important();
+                        flash('<i class="fa fa-check-circle-o"></i> Debe seleccionar una fecha en la que realiza/ó el préstamo!')->warning()->important();
                         return redirect()->back();
                         } else {
                             $disponible=$this->buscar_existencia($request->id_insumo);
@@ -152,7 +152,7 @@ class PrestamosController extends Controller
                 return redirect()->back();
                 } else {
                     if ($request->fecha_prestamo==null) {
-                    flash('<i class="fa fa-check-circle-o"></i> Debe seleccionar una Gerencia!')->warning()->important();
+                    flash('<i class="fa fa-check-circle-o"></i> Debe seleccionar una fecha en la que realiza/ó el préstamo!')->warning()->important();
                     return redirect()->back();
                     } else {
                         $disponible=$this->buscar_existencia($request->id_insumo);
@@ -300,7 +300,7 @@ class PrestamosController extends Controller
 
                                 //--------------------------------------
                                 //actualizando existencias
-                                $insumo=Insumos::find($prestamo->id_insumo);
+                                $insumo=Insumos::find($request->id_insumo);
                                 $insumo->in_almacen=$insumo->in_almacen-$request->cantidad;
                                 $insumo->disponibles=$insumo->disponibles-$request->cantidad;
 
@@ -403,9 +403,6 @@ class PrestamosController extends Controller
         \DB::select('SET @@sql_mode=""');
         $historial=HistorialPrestamos::select('codigo','id','created_at',\DB::raw('codigo'))->where('id','>',0)->groupBy('codigo')->orderBy('id','DESC')->get();
 
-        /*$historial=\DB::select('SELECT historial_prestamos.*, prestamos.* FROM historial_prestamos,prestamos,insumos,solicitantes WHERE historial_prestamos.id_prestamo=prestamos.id GROUP BY historial_prestamos.codigo')->get();*/
-        //dd($historial);
-
         return view('inventario.prestamos.historial',compact('historial'));
     }
 
@@ -437,7 +434,7 @@ class PrestamosController extends Controller
             $key->delete();
             
         }
-        flash('<i class="fa fa-check-circle-o"></i> Préstamo dehecho exitosamente!')->warning()->important();
+        flash('<i class="fa fa-check-circle-o"></i> Préstamo deshecho exitosamente!')->warning()->important();
         return redirect()->back();
 
     }
