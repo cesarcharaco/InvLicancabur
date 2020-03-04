@@ -24,7 +24,7 @@
     <div class="col-md-6 col-lg-4">
       <div class="widget-small info coloured-icon"><i class="icon fa fa-sitemap fa-3x"></i>
         <div class="info">
-          <h4>Insumos</h4>
+          <h4><a href="{{ route('insumos.index') }}" style="text-decoration: none">Insumos</a></h4>
           <p><b>{{ $i }}</b></p>
         </div>
       </div>
@@ -32,7 +32,7 @@
     <div class="col-md-6 col-lg-4">
       <div class="widget-small warning coloured-icon"><i class="icon fa  fa-handshake-o fa-3x"></i>
         <div class="info">
-          <h4>Préstamos</h4>
+          <h4><a href="{{ route('prestamos.index') }}" style="text-decoration: none">Préstamos</a></h4>
           <p><b>{{ $p }}</b></p>
         </div>
       </div>
@@ -40,7 +40,7 @@
     <div class="col-md-6 col-lg-3">
       <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
         <div class="info">
-          <h4>Incidencias</h4>
+          <h4><a href="{{ route('incidencias.index') }}" style="text-decoration: none">Incidencias</a></h4>
           <p><b>{{ $in }}</b></p>
         </div>
       </div>
