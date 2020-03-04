@@ -282,7 +282,7 @@ class IncidenciasController extends Controller
 
     public function historial()
     {
-        \DB::select('SET @@sql_mode=""');
+        //\DB::select('SET @@sql_mode=""');
         $historial=HistorialIncidencias::select('codigo','id','created_at',\DB::raw('codigo'))->where('id','>',0)->groupBy('codigo')->orderBy('id','DESC')->get();
 
         return view('inventario.incidencias.historial',compact('historial'));
