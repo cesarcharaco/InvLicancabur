@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title') Registro de Incidencia @endsection
+@section('title') Actualización de Incidencia @endsection
 @section('content')
 <main class="app-content">
   <div class="app-title">
@@ -11,7 +11,7 @@
       <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
       <li class="breadcrumb-item"><a href="">Inventario</a></li>
       <li class="breadcrumb-item"><a href="{{ route('incidencias.index') }}">Incidencias</a></li>
-      <li class="breadcrumb-item"><a href="">Registro de Incidencia</a></li>
+      <li class="breadcrumb-item"><a href="">Actualización de Incidencia</a></li>
     </ul>
   </div>
   <div class="tile mb-4">
@@ -45,9 +45,9 @@
     <div class="row">
       <div class="col-md-12">
         <div class="tile">
-          <h4>Registro de Incidencia <small>Todos los campos (<b style="color: red;">*</b>) son requeridos.</small></h4>
+          <h4>Actualización de Incidencia <small>Todos los campos (<b style="color: red;">*</b>) son requeridos.</small></h4>
           <div class="tile-body">
-            <form name="form_prestamo" id="form_prestamo" action="{{ route('incidencias.store') }}" method="post" data-parsley-validate>
+            {!! Form::open(['route' => ['incidencias.update',$incidencia->id], 'method' => 'PUT', 'name' => 'editar_incidencia', 'id' => 'editar_incidencia', 'data-parsley-validate']) !!}
               @csrf
               <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">                  
@@ -57,7 +57,7 @@
                       
                         <option value="0">Seleccione una gerencia</option>
                       @foreach($gerencias as $key)
-                      <option value="{{ $key->id }}">{{ $key->gerencia }}</option>
+                      <option value="{{ $key->id }}" @if($key->id==$incidencia->insumos->id_gerencia) selected="selected" @endif >{{ $key->gerencia }}</option>
                       @endforeach
                       
                     </select>
@@ -68,6 +68,9 @@
                   <div class="form-group">
                     <label class="control-label">Insumos <b style="color: red;">*</b></label><br>
                     <select name="id_insumo" id="id_insumo" class="form-control select2" title="Seleccione un insumo">
+                    	@foreach($insumos as $key)
+                    		<option value="{{ $key->id }}" @if($key->id==$incidencia->id_insumo) selected="selected" @endif >{{ $key->producto }} ({{ $key->descripcion }})</option>
+                    	@endforeach
                     </select>
                   </div>
                 </div> 
@@ -77,27 +80,27 @@
                   <div class="form-group">
                     <label class="control-label">Tipo de Incidencia <b style="color: red;">*</b></label>
                     <select name="tipo" id="tipo" title="Seleccione el tipo de Incidencia" class="form-control">
-                      <option value="En Reparación">En Reparación</option>
-                      <option value="Inservible">Inservible</option>
+                      <option value="En Reparación" @if($incidencia->tipo=="En Reparación") selected="selected"  @endif >En Reparación</option>
+                      <option value="Inservible" @if($incidencia->tipo=="Inservible") selected="selected" @endif >Inservible</option>
                     </select>
                   </div>
                 </div>
               <div class="col-md-3">                  
                   <div class="form-group">
                     <label class="control-label">Observación</label>
-                    <textarea name="observacion" id="observacion" class="form-control" cols="10" rows="5"></textarea>
+                    <textarea name="observacion" id="observacion" class="form-control" cols="10" rows="5"> {{ $incidencia->observacion }} </textarea>
                   </div>
                 </div>
                 <div class="col-md-3">                  
                   <div class="form-group">
                     <label class="control-label">Fecha <b style="color: red;">*</b></label>
-                    <input class="form-control datepick" type="text" required="required" name="fecha_incidencia" id="fecha_incidencia" placeholder="Seleccione la fecha en la que se realiza" max="{{ $hoy }}">
+                    <input class="form-control datepick" type="text" required="required" name="fecha_incidencia" id="fecha_incidencia" placeholder="Seleccione la fecha en la que se realiza" max="{{ $hoy }}" value="{{ $incidencia->fecha_incidencia }}">
                   </div>
                 </div>
                 <div class="col-md-3">                  
                   <div class="form-group">
                     <label class="control-label">Cantidad <b style="color: red;">*</b> <small>(Stock)</small></label>
-                    <input class="form-control" type="number" name="cantidad" id="cantidad" placeholder="Ingrese cantidad" disabled="disabled" title="La cantidad no debe superar el máximo disponible del insumo" required="required">
+                    <input class="form-control" type="number" name="cantidad" id="cantidad" placeholder="Ingrese cantidad" title="La cantidad no debe superar el máximo disponible del insumo" required="required" value="{{ $incidencia->cantidad }}">
                     <small>La cantidad no debe superar el máximo disponible del insumo</small><br>
                     <small><span id="mensaje" style="color:red"></span></small>
                   </div>

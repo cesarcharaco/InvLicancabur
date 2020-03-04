@@ -34,6 +34,7 @@ Route::get('insumos/{id_gerencia}/buscar','PrestamosController@buscar_insumos');
 Route::get('insumos/{id_insumo}/buscar_existencia','PrestamosController@buscar_existencia');
 
 Route::get('/incidencias/historial','IncidenciasController@historial')->name('incidencias.historial');
+Route::post('incidencias/deshacer','IncidenciasController@deshacer_incidencia')->name('incidencias.deshacer');
 Route::resource('incidencias','IncidenciasController');
 /*Route::get('inventario/insumos', function () {
     return view('inventario/insumos/index');

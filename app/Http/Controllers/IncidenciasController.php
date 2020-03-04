@@ -320,4 +320,10 @@ class IncidenciasController extends Controller
         return redirect()->back();
 
     }
+
+    public function buscar_existencia($id_insumo)
+    {
+        $insumo=Insumos::find($id_insumo);
+        return $insumo->disponibles;
+    }
 }

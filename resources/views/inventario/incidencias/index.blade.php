@@ -18,7 +18,7 @@
       <div class="col-lg-12">
         <div class="page-header">
           <h2 class="mb-3 line-head" id="indicators">&nbsp;&nbsp;Incidencias
-            <a class="btn btn-primary icon-btn pull-right" href="{{ url('inventario/incidencias/create') }}"><i class="fa fa-plus"></i>Registrar Incidencia</a>
+            <a class="btn btn-primary icon-btn pull-right" href="{{ route('incidencias.create') }}"><i class="fa fa-plus"></i>Registrar Incidencia</a>
             <a class="btn btn-info icon-btn pull-left" href="{{ route('incidencias.historial') }}"><i class="fa fa-plus"></i>Historial</a>
           </h2>
         </div>
@@ -69,7 +69,7 @@
                   <td>{{ $key->fecha_incidencia }}</td>
                     
                   <td>
-                    <a href="{{ route('incidencias.edit',$key->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Editar Préstamo"><i class="fa fa-edit"></i></a>
+                    <a href="{{ route('incidencias.edit',$key->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Editar Incidencia"><i class="fa fa-edit"></i></a>
                     <button class="btn btn-danger btn-sm" onclick="eliminar_incidencia({{ $key->id }})" data-toggle="modal" data-target="#eliminar_incidencia"><i class="fa fa-trash"></i></button>
                   </td>
                 </tr>
@@ -84,7 +84,7 @@
 </main>
 
 <div class="bs-component">
-  <div class="modal" id="eliminar_prestamo">
+  <div class="modal" id="eliminar_incidencia">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         {!! Form::open(['route' => ['incidencias.destroy',1033], 'method' => 'DELETE']) !!}

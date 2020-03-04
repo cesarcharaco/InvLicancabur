@@ -10,7 +10,7 @@ class HistorialIncidencias extends Model
 
     protected $fillable=['id_incidencia','codigo'];
 
-    public function prestamos()
+    public function incidencias()
     {
     	return $this->belongsTo('App\Incidencias','id_incidencia');
     }

@@ -70,7 +70,7 @@
               </thead>
               <tbody>
                 @foreach($insumos as $key)
-                <tr title="Entregados: {{ $key->entregados }} - En Reparación: {{ $key->en_reparacion }}">
+                <tr title="Entregados: {{ $key->entregados }} - En Reparación: {{ $key->en_reparacion }} - Inserviles: {{ $key->inservible }}">
                   <td>{{ $key->producto }}</td>
                   <td>{{ $key->descripcion }}</td>
                   <td>{{ $key->serial }}</td>
