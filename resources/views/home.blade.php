@@ -25,26 +25,26 @@
       <div class="widget-small info coloured-icon"><i class="icon fa fa-sitemap fa-3x"></i>
         <div class="info">
           <h4>Insumos</h4>
-          <p><b>25</b></p>
+          <p><b>{{ $i }}</b></p>
         </div>
       </div>
     </div>
     <div class="col-md-6 col-lg-4">
       <div class="widget-small warning coloured-icon"><i class="icon fa  fa-handshake-o fa-3x"></i>
         <div class="info">
-          <h4>Prstamos</h4>
-          <p><b>10</b></p>
+          <h4>Préstamos</h4>
+          <p><b>{{ $p }}</b></p>
         </div>
       </div>
     </div>
-    <!-- <div class="col-md-6 col-lg-3">
+    <div class="col-md-6 col-lg-3">
       <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
         <div class="info">
-          <h4>Stars</h4>
-          <p><b>500</b></p>
+          <h4>Incidencias</h4>
+          <p><b>{{ $in }}</b></p>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </main>
 @endsection
