@@ -400,7 +400,7 @@ class PrestamosController extends Controller
 
     public function historial()
     {
-        \DB::select('SET @@sql_mode=""');
+        //\DB::select('SET @@sql_mode=""');
         $historial=HistorialPrestamos::select('codigo','id','created_at',\DB::raw('codigo'))->where('id','>',0)->groupBy('codigo')->orderBy('id','DESC')->get();
 
         return view('inventario.prestamos.historial',compact('historial'));
