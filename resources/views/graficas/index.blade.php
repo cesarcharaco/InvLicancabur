@@ -13,12 +13,12 @@
     </ul>
   </div>
 
-  <form action="{{ route('generar_reporte') }}" method="GET" name="generar_grafica" data-parsley-validate>
+  <form action="{{ route('generar_reporte') }}" target="_blank"  method="GET" name="generar_grafica" data-parsley-validate>
     <div class="tile mb-4">
       <div class="row">
         <div class="col-md-12">
           <div class="page-header">
-            <h2 class="mb-3 line-head" id="filtro">Generar PDF</h2>
+            <h2 class="mb-3 line-head" id="filtro">Generar Reportes</h2>
           </div>
         </div>
       </div>
