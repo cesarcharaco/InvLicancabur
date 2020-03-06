@@ -65,6 +65,10 @@ Route::get('solicitantes/create', function () {
     return view('solicitantes/create');
 });*/
 
+Route::get('generar_reporte', 'ReportesController@store');
+Route::get('generar_reporte', 'ReportesController@store')->name('generar_reporte');
+Route::resource('reportes','ReportesController');
+
 Route::get('graficas', function () {
     return view('graficas/index');
 });
