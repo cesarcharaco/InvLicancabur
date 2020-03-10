@@ -71,7 +71,7 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="page-header">
-          <h2 class="mb-3 line-head" id="indicators">Reporte en Gráficas ({{ $fecha_actual }})</h2>
+          <h2 class="mb-3 line-head" id="indicators">Reporte en Gráficas </h2>
         </div>
       </div>
     </div>
