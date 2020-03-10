@@ -70,7 +70,7 @@
               </thead>
               <tbody>
                 @foreach($insumos as $key)
-                <tr title="Entregados: {{ $key->entregados }} - En Reparación: {{ $key->en_reparacion }} - Inserviles: {{ $key->inservible }}">
+                <tr title="Entregados: {{ $key->entregados }} - En Reparación: {{ $key->en_reparacion }} - InserviBles: {{ $key->inservible }}">
                   <td>{{ $key->producto }}</td>
                   <td>{{ $key->descripcion }}</td>
                   <td>{{ $key->serial }}</td>
@@ -88,48 +88,11 @@
                   <td>
                     <a href="{{ route('insumos.edit',$key->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Editar Insumo"><i class="fa fa-edit"></i></a>
                     <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminar_insumo" onclick="eliminar('{{ $key->id }}')"><i class="fa fa-trash"></i></a>
+                    <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#detalles" onclick="detalles('{{ $key->producto }}','{{ $key->descripcion }}','{{ $key->serial }}','{{ $key->modelo }}','{{ $key->modulo }}','{{ $key->gerencias->gerencia }}','{{ $key->ubicacion }}','{{ $key->existencia }}','{{ $key->in_almacen }}','{{ $key->out_almacen }}','{{ $key->disponibles }}','{{ $key->entregados }}','{{ $key->en_reparacion }}','{{ $key->inservible }}')"><i class="fa fa-eye"></i></a>
+
                   </td>
                 </tr>
                 @endforeach
-                {{-- <tr>
-                  <td>Compresor</td>
-                  <td>SDFA1246</td>
-                  <td>LTE</td>
-                  <td>Almacen</td>
-                  <td>Bueno</td>
-                  <td>25</td>
-                  <td>24</td>
-                  <td>
-                    <a href="" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Editar equipo"><i class="fa fa-edit"></i></a>
-                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminar_equipo"><i class="fa fa-trash"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Computador</td>
-                  <td>SDFA1247</td>
-                  <td>LTE</td>
-                  <td>Almacen</td>
-                  <td>Bueno</td>
-                  <td>17</td>
-                  <td>16</td>
-                  <td>
-                    <a href="" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Editar equipo"><i class="fa fa-edit"></i></a>
-                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminar_equipo"><i class="fa fa-trash"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Lápiz</td>
-                  <td>SDFA1248</td>
-                  <td>FDK</td>
-                  <td>Oficina</td>
-                  <td>Bueno</td>
-                  <td>11</td>
-                  <td>10</td>
-                  <td>
-                    <a href="" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Editar equipo"><i class="fa fa-edit"></i></a>
-                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminar_equipo"><i class="fa fa-trash"></i></button>
-                  </td>
-                </tr> --}}
               </tbody>
             </table>
           </div>
@@ -142,7 +105,7 @@
 
 <div class="bs-component">
   <div class="modal" id="eliminar_insumo">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog_1" role="document">
       <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title"><i class="fa fa-trash"></i> Eliminar Insumo</h5>
@@ -168,6 +131,74 @@
     </div>
   </div>
 </div>
+
+{{-- ver detalles --}}
+
+<div class="bs-component">
+  <div class="modal" id="detalles">
+    <div class="modal-dialog modal-dialog_1" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title"><i class="fa fa-eye"></i> Detalles del Insumo</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          </div>
+            <div class="modal-body">
+              <div class="table-responsive">
+                <table class="table table-hover table-bordered" id="sampleTable">
+                  <tr>
+                    <th>Nombre:</th>
+                    <td><span id="producto"></span></td>
+                    <th>Existencia</th>
+                    <td><span id="existencia"></span></td>
+                  </tr>
+                  <tr>
+                    <th>Descripción</th>
+                    <td><span id="descripcion"></span></td>
+                    <th>En Almacen</th>
+                    <td><span id="in_almacen"></span></td>
+                  </tr>
+                  <tr>
+                    <th>Serial</th>
+                    <td><span id="serial"></span></td>
+                    <th>Entregados</th>
+                    <td><span id="entregados"></span></td>
+                  </tr>
+                  <tr>
+                    <th>Modelo</th>
+                    <td><span id="modelo"></span></td>
+                    <th>Fuera de Almacén</th>
+                    <td><span id="out_almacen"></span></td>
+                  </tr>
+                  <tr>
+                    <th>Módulo</th>
+                    <td><span id="modulo"></span></td>
+                    <th>Disponibles</th>
+                    <td><span id="disponibles"></span></td>
+                  </tr>
+                  <tr>
+                    <th>Gerencia</th>
+                    <td><span id="gerencia"></span></td>
+                    <th>En Reparación</th>
+                    <td><span id="en_reparacion"></span></td>
+                  </tr>
+                  <tr>
+                    <th>Ubicación</th>
+                    <td><span id="ubicacion"></span></td>
+                    <th>Inservibles</th>
+                    <td><span id="inservible"></span></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
+          </div>          
+        
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 @section('scripts')
 <script type="text/javascript">
@@ -175,6 +206,21 @@
     $("#id_insumo").val(id_insumo);
   }
 
-
+  function detalles(producto,descripcion,serial,modelo,modulo,gerencia,ubicacion,existencia,in_almacen,out_almacen,disponibles,entregados,en_reparacion,inservible) {
+    $("#producto").text(producto);
+    $("#descripcion").text(descripcion);
+    $("#serial").text(serial);
+    $("#modelo").text(modelo);
+    $("#modulo").text(modulo);
+    $("#gerencia").text(gerencia);
+    $("#ubicacion").text(ubicacion);
+    $("#existencia").text(existencia);
+    $("#in_almacen").text(in_almacen);
+    $("#out_almacen").text(out_almacen);
+    $("#disponibles").text(disponibles);
+    $("#entregados").text(entregados);
+    $("#en_reparacion").text(en_reparacion);
+    $("#inservible").text(inservible);
+  }
 </script>
 @endsection

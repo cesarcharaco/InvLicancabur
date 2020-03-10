@@ -11,7 +11,7 @@
 			<tr>
 				<th>Nro.</th>
 				<th>Insumo</th>
-				<th>Modulo</th>
+				<th>Módulo</th>
 				<th>En el almacén</th>
 				<th>Fuera del almacén</th>
 				<th>Disponibles</th>

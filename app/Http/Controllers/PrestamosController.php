@@ -401,7 +401,7 @@ class PrestamosController extends Controller
     public function historial()
     {
         //\DB::select('SET @@sql_mode=""');
-        $historial=HistorialPrestamos::select('codigo','id','created_at',\DB::raw('codigo'))->where('id','>',0)->groupBy('codigo')->orderBy('id','DESC')->get();
+        $historial=HistorialPrestamos::select('codigo','id_prestamo','id','created_at',\DB::raw('codigo'))->where('id','>',0)->groupBy('codigo')->orderBy('id','DESC')->get();
 
         return view('inventario.prestamos.historial',compact('historial'));
     }
@@ -465,6 +465,12 @@ class PrestamosController extends Controller
 
         flash('<i class="fa fa-check-circle"></i> Status del Préstamo cambiado exitosamente a '.$request->status.'!')->success()->important();
         return redirect()->to('prestamos');
+    }
+
+    public function detalles_historial($id_prestamo)
+    {
+        $historial=HistorialPrestamos::where('id_prestamo',$id_prestamo)->first();
+        return $prestamos=\DB::table('insumos')->join('prestamos','prestamos.id_insumo','=','insumos.id')->join('solicitantes','solicitantes.id','=','prestamos.id_solicitante')->join('historial_prestamos','historial_prestamos.id_prestamo','prestamos.id')->select('solicitantes.nombres','solicitantes.rut','solicitantes.id','insumos.producto','insumos.descripcion','insumos.serial','prestamos.tipo','prestamos.fecha_prestamo','prestamos.fecha_devuelto','prestamos.status','prestamos.cantidad','prestamos.id')->where('historial_prestamos.codigo',$historial->codigo)->get();
     }
     
 }

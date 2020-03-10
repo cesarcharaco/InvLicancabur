@@ -80,7 +80,7 @@
 
 <div class="bs-component">
   <div class="modal" id="eliminar_Gerencia">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog_1" role="document">
       <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title"><i class="fa fa-trash"></i> Eliminar Gerencia</h5>

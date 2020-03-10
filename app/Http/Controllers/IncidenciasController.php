@@ -283,7 +283,7 @@ class IncidenciasController extends Controller
     public function historial()
     {
         //\DB::select('SET @@sql_mode=""');
-        $historial=HistorialIncidencias::select('codigo','id','created_at',\DB::raw('codigo'))->where('id','>',0)->groupBy('codigo')->orderBy('id','DESC')->get();
+        $historial=HistorialIncidencias::select('codigo','id_incidencia','id','created_at',\DB::raw('codigo'))->where('id','>',0)->groupBy('codigo')->orderBy('id','DESC')->get();
 
         return view('inventario.incidencias.historial',compact('historial'));
     }
@@ -325,5 +325,11 @@ class IncidenciasController extends Controller
     {
         $insumo=Insumos::find($id_insumo);
         return $insumo->disponibles;
+    }
+
+    public function detalles_historial($id_incidencia)
+    {
+        $historial=HistorialIncidencias::where('id_incidencia',$id_incidencia)->first();
+        return $incidencias=\DB::table('insumos')->join('incidencias','incidencias.id_insumo','=','insumos.id')->join('historial_incidencias','historial_incidencias.id_incidencia','incidencias.id')->select('insumos.producto','insumos.descripcion','insumos.serial','incidencias.tipo','incidencias.fecha_incidencia','incidencias.cantidad','incidencias.id')->where('historial_incidencias.codigo',$historial->codigo)->get();
     }
 }

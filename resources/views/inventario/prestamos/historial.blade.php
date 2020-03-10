@@ -46,6 +46,8 @@
                   <td>
                     
                     <button title="Presione si desea deshacer el préstamo" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deshacer_prestamo" onclick="deshacer('{{ $key->codigo }}')"><i class="fa fa-undo"></i></button>
+
+                    <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#detalles" onclick="detalles('{{ $key->id_prestamo }}')"><i class="fa fa-eye"></i></a>
                   </td>
                 </tr>
                 @endforeach
@@ -84,6 +86,32 @@
     </div>
   </div>
 </div>
+{{-- ver detalles --}}
+
+<div class="bs-component">
+  <div class="modal" id="detalles">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title"><i class="fa fa-eye"></i> Detalles del Insumo</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          </div>
+            <div class="modal-body">
+              <div class="table-responsive">
+                <table class="table table-hover table-bordered" id="tabla_detalles">
+                  
+                </table>
+              </div>
+            </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
+          </div>          
+        
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @section('scripts')
@@ -91,6 +119,25 @@
   function deshacer(codigo) {
     console.log(codigo);
     $("#codigo").val(codigo);
+  }
+
+  function detalles(id_prestamo) {
+    
+    $.get('/prestamos/'+id_prestamo+'/detalles_historial',function(data){
+      if (data.length>0) {
+        $("#tabla_detalles").empty();
+        $("#tabla_detalles").append('<tr><th>#</th><th>Solicitante</th><th>Rut</th><th>Insumo</th><th>Serial</th><th>Tipo</th><th>Cantidad</th><th>Fecha préstamo</th><th>Fecha de entrega</th><th>Status</th></tr>');
+        var j=1;
+        var fecha_entrega='';
+        for (var i =0;i < data.length; i++) {
+          if(data[i].fecha_entrega==null){
+              fecha_entrega='';
+          }
+          $("#tabla_detalles").append('<tr><td>'+j+'</td><td>'+data[i].nombres+'</td><td>'+data[i].rut+'</td><td>'+data[i].producto+'('+data[i].descripcion+')</td><td>'+data[i].serial+'</td><td>'+data[i].tipo+'</td><td>'+data[i].cantidad+'</td><td>'+data[i].fecha_prestamo+'</td><td>'+fecha_entrega+'</td><td>'+data[i].status+'</td></tr>');
+          j++;
+        }
+      }
+    });
   }
 </script>
 @endsection

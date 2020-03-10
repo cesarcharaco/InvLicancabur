@@ -132,7 +132,7 @@
 
 <div class="bs-component">
   <div class="modal" id="eliminar_Solicitante">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog_1" role="document">
       <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title"><i class="fa fa-trash"></i> Eliminar Solicitante</h5>
@@ -160,7 +160,7 @@
 </div>
 
 <div class="modal fade" id="myModaltwo" role="dialog">
-    <div class="modal-dialog modal-md">
+    <div class="modal-dialog  modal-dialog_1 modal-md">
         <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title"><i class="fa fa-lock"></i> Cambiar Status de Solicitante</h5>

@@ -85,7 +85,7 @@
 
 <div class="bs-component">
   <div class="modal" id="eliminar_incidencia">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog_1" role="document">
       <div class="modal-content">
         {!! Form::open(['route' => ['incidencias.destroy',1033], 'method' => 'DELETE']) !!}
           <div class="modal-header">

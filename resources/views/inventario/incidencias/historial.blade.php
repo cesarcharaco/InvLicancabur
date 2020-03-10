@@ -46,6 +46,7 @@
                   <td>
                     
                     <button title="Presione si desea deshacer el incidencia" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deshacer_incidencia" onclick="deshacer('{{ $key->codigo }}')"><i class="fa fa-undo"></i></button>
+                    <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#detalles" onclick="detalles('{{ $key->id_incidencia }}')"><i class="fa fa-eye"></i></a>
                   </td>
                 </tr>
                 @endforeach

@@ -52,13 +52,13 @@
             <table class="table table-hover table-bordered" id="sampleTable">
               <thead>
                 <tr>
-                  <th>Empleado</th>
+                  <th>Solicitante</th>
                   <th>Rut</th>
                   <th>Insumo</th>
                   <th>Serial</th>
                   <th>Tipo</th>
                   <th>Cantidad</th>
-                  <th>Fecha prestamo</th>
+                  <th>Fecha préstamo</th>
                   <th>Fecha de entrega</th>
                   <th>Status</th>
                   <th>Acciones</th>
@@ -108,7 +108,7 @@
 
 <div class="bs-component">
   <div class="modal" id="eliminar_prestamo">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog  modal-dialog_1 " role="document">
       <div class="modal-content">
         {!! Form::open(['route' => ['prestamos.destroy',1033], 'method' => 'DELETE']) !!}
           <div class="modal-header">
@@ -130,7 +130,7 @@
 </div>
 
 <div class="modal fade" id="myModaltwo" role="dialog">
-    <div class="modal-dialog modal-md">
+    <div class="modal-dialog modal-dialog_1 modal-md">
         <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title"><i class="fa fa-lock"></i> Cambiar Status de Préstamo</h5>

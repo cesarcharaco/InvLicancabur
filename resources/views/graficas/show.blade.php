@@ -9,69 +9,17 @@
     </div>
     <ul class="app-breadcrumb breadcrumb">
       <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-      <li class="breadcrumb-item"><a href="{{ route('reportes.index') }}">Gráficas</a></li>
+      <li class="breadcrumb-item"><a href="{{ route('reportes.index') }}">Reporte en Gráficas</a></li>
     </ul>
   </div>
 
-  <form action="{{ route('generar_reporte') }}" target="_blank"  method="GET" name="generar_grafica" data-parsley-validate>
-    <div class="tile mb-4">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="page-header">
-            <h2 class="mb-3 line-head" id="filtro">Generar Reportes</h2>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Desde</label>
-            <input type="date" name="desde" class="form-control" max="{{$fecha_actual}}" required="required">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Hasta</label>
-            <input type="date" name="hasta" class="form-control" max="{{$fecha_actual}}" required="required">
-          </div>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Gerencias</label>
-            <select name="id_gerencia" class="form-control select2" placeholder="Seleccione una gerencia" required="required">
-              <option disabled="">Seleccione una gerencia</option>
-              @foreach($gerencias as $key)
-                <option value="{{$key->id}}">{{$key->gerencia}}</option>
-              @endforeach
-            </select>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Generar</label>
-            <select name="generar" class="form-control select2" required="required">
-              <option>PDF</option>
-              <option>Gráficas</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <center>
-        <input type="submit" class="btn btn-danger" name="submit" value="Generar Reporte">
-        
-      </center>
-    </div>
-
-  </form>
+  
 
   <div class="tile mb-4">
     <div class="row">
       <div class="col-lg-12">
         <div class="page-header">
-          <h2 class="mb-3 line-head" id="indicators">Reporte en Gráficas ({{ $fecha_actual }})</h2>
+          <h2 class="mb-3 line-head" id="indicators">Gráficas</h2>
         </div>
       </div>
     </div>
