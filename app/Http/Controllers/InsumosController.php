@@ -42,24 +42,56 @@ class InsumosController extends Controller
     public function store(InsumosRequest $request)
     {
         //dd($request->all());
-        $insumo=new Insumos();
-        if ($request->entregados=="") {
-            $entregados=0;
-        }else{
-            $entregados=$request->entregados;
+        if ($request->serial!=="S/N") {
+            $buscar=Insumos::where('serial',$request->serial)->get();
+            if (count($buscar)>0) {
+                flash('<i class="fa fa-check-circle-o"></i> Serial ya registrado, intente otra vez!')->warning()->important();
+                return redirect()->to('insumos');
+            } else {
+                $insumo=new Insumos();
+
+                if ($request->entregados=="") {
+                    $entregados=0;
+                }else{
+                    $entregados=$request->entregados;
+                }
+                if ($request->usados=="") {
+                    $usados=0;
+                }else{
+                    $usados=$request->usados;
+                }
+                $insumo->fill($request->all(),['except' => ['entregados','usados']])->save();
+                $i=Insumos::find($insumo->id);
+                $i->entregados=$entregados;
+                $i->usados=$usados;
+                $i->save();
+                flash('<i class="fa fa-check-circle-o"></i> Insumo registrado exitosamente!')->success()->important();
+                return redirect()->to('insumos');
+            }    
+        } else {
+                $insumo=new Insumos();
+
+                if ($request->entregados=="") {
+                    $entregados=0;
+                }else{
+                    $entregados=$request->entregados;
+                }
+                if ($request->usados=="") {
+                    $usados=0;
+                }else{
+                    $usados=$request->usados;
+                }
+                $insumo->fill($request->all(),['except' => ['entregados','usados']])->save();
+                $i=Insumos::find($insumo->id);
+                $i->entregados=$entregados;
+                $i->usados=$usados;
+                $i->save();
+                flash('<i class="fa fa-check-circle-o"></i> Insumo registrado exitosamente!')->success()->important();
+                return redirect()->to('insumos');
+
         }
-        if ($request->en_reparacion=="") {
-            $en_reparacion=0;
-        }else{
-            $en_reparacion=$request->en_reparacion;
-        }
-        $insumo->fill($request->all(),['except' => ['entregados','en_reparacion']])->save();
-        $i=Insumos::find($insumo->id);
-        $i->entregados=$entregados;
-        $i->en_reparacion=$en_reparacion;
-        $i->save();
-        flash('<i class="fa fa-check-circle-o"></i> Insumo registrado exitosamente!')->success()->important();
-        return redirect()->to('insumos');
+        
+        
     }
 
     /**
@@ -96,30 +128,51 @@ class InsumosController extends Controller
      */
     public function update(InsumosUpdateRequest $request, $id_insumo)
     {
+        if ($request->serial!=="S/N") {
         $buscar=Insumos::where('serial',$request->serial)->where('id','<>',$id_insumo)->get();
         if (count($buscar)>0) {
             flash('<i class="fa fa-check-circle-o"></i> Serial ya registrado, intente otra vez!')->warning()->important();
             return redirect()->to('insumos');
         } else {
             $insumo=Insumos::find($id_insumo);
+            if ($request->entregados=="") {
+                $entregados=0;
+            }else{
+                $entregados=$request->entregados;
+            }
+            if ($request->usados=="") {
+                $usados=0;
+            }else{
+                $usados=$request->usados;
+            }
+            $insumo->fill($request->all(),['except' => ['entregados','usados']])->save();
+            $i=Insumos::find($insumo->id);
+            $i->entregados=$entregados;
+            $i->usados=$usados;
+            $i->save();
+            flash('<i class="fa fa-check-circle-o"></i> Insumo actualizado exitosamente!')->success()->important();
+            return redirect()->to('insumos');
+        }
+    }else{
+            $insumo=Insumos::find($id_insumo);
         if ($request->entregados=="") {
             $entregados=0;
         }else{
             $entregados=$request->entregados;
         }
-        if ($request->en_reparacion=="") {
-            $en_reparacion=0;
+        if ($request->usados=="") {
+            $usados=0;
         }else{
-            $en_reparacion=$request->en_reparacion;
+            $usados=$request->usados;
         }
-        $insumo->fill($request->all(),['except' => ['entregados','en_reparacion']])->save();
+        $insumo->fill($request->all(),['except' => ['entregados','usados']])->save();
         $i=Insumos::find($insumo->id);
         $i->entregados=$entregados;
-        $i->en_reparacion=$en_reparacion;
+        $i->usados=$usados;
         $i->save();
         flash('<i class="fa fa-check-circle-o"></i> Insumo actualizado exitosamente!')->success()->important();
         return redirect()->to('insumos');
-        }
+    }
         
     }
 

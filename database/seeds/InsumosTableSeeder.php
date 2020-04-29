@@ -16,7 +16,7 @@ class InsumosTableSeeder extends Seeder
         	'descripcion' => 'Metal, 200 lts',
         	'serial' => 'TB234',
         	'modelo' => 'XYZ',
-        	'modulo' => 'Almacenamiento Gasolina',
+        	'marca' => 'WESTER',
         	'id_gerencia' => 1,
         	'ubicacion' => 'Almacen nro 2',
         	'existencia' => 220,
@@ -24,7 +24,7 @@ class InsumosTableSeeder extends Seeder
         	'out_almacen' => 20,
         	'disponibles' => 220,
             'entregados' => 0,
-        	'en_reparacion' => 0,
+        	'usados' => 0,
             'inservible' => 0
 
         ]);
@@ -34,7 +34,7 @@ class InsumosTableSeeder extends Seeder
         	'descripcion' => 'Plástico, 200 lts',
         	'serial' => 'TB244',
         	'modelo' => 'XYZ',
-        	'modulo' => 'Almacenamiento de Agua',
+        	'marca' => 'WESTER',
         	'id_gerencia' => 1,
         	'ubicacion' => 'Almacen nro 1',
         	'existencia' => 220,
@@ -42,7 +42,7 @@ class InsumosTableSeeder extends Seeder
         	'out_almacen' => 20,
         	'disponibles' => 220,
             'entregados' => 10,
-        	'en_reparacion' => 0,
+        	'usados' => 0,
             'inservible' => 0
 
         ]);
@@ -52,7 +52,7 @@ class InsumosTableSeeder extends Seeder
         	'descripcion' => 'Metal',
         	'serial' => 'PL234',
         	'modelo' => 'PLTX',
-        	'modulo' => 'Recolección',
+        	'marca' => 'WESTER',
         	'id_gerencia' => 2,
         	'ubicacion' => 'Almacen nro 2',
         	'existencia' => 300,
@@ -60,7 +60,7 @@ class InsumosTableSeeder extends Seeder
         	'out_almacen' => 0,
         	'disponibles' => 300,
             'entregados' => 0,
-        	'en_reparacion' => 0,
+        	'usados' => 0,
             'inservible' => 0
 
         ]);
@@ -70,7 +70,7 @@ class InsumosTableSeeder extends Seeder
         	'descripcion' => 'Capacidad 100 kgs.',
         	'serial' => 'CT234',
         	'modelo' => 'CT456',
-        	'modulo' => 'Recolección',
+        	'marca' => 'WESTER',
         	'id_gerencia' => 2,
         	'ubicacion' => 'Almacen nro 2',
         	'existencia' => 200,
@@ -78,7 +78,7 @@ class InsumosTableSeeder extends Seeder
         	'out_almacen' => 0,
         	'disponibles' => 200,
             'entregados' => 20,
-        	'en_reparacion' => 0,
+        	'usados' => 0,
             'inservible' => 0
 
         ]);

@@ -84,9 +84,9 @@ class IncidenciasController extends Controller
                                 $insumo->in_almacen=$insumo->in_almacen-$request->cantidad;
                                 $insumo->disponibles=$insumo->disponibles-$request->cantidad;
 
-                            if ($request->tipo=="En Reparación") {
+                            if ($request->tipo=="Usados") {
 
-                                $insumo->en_reparacion=$insumo->en_reparacion+$request->cantidad;
+                                $insumo->usados=$insumo->usados+$request->cantidad;
                                 $insumo->save();
                             }else{
                                 $insumo->entregados=$insumo->inservible+$request->cantidad;
@@ -109,7 +109,7 @@ class IncidenciasController extends Controller
                                 //---------------------
                         
 
-                        if ($request->tipo=="En Reparación") {
+                        if ($request->tipo=="Usados") {
                         flash('<i class="fa fa-check-circle-o"></i> Insumo(s) registrado EN REPARACIÓN exitosamente!')->warning()->important();
                         return redirect()->to('incidencias');
                         } else {
@@ -182,8 +182,8 @@ class IncidenciasController extends Controller
                                 $insumo->in_almacen=$insumo->in_almacen+$incidencia->cantidad;
                                 $insumo->disponibles=$insumo->disponibles+$incidencia->cantidad;
 
-                                if ($incidencia->tipo=="En Reparación") {
-                                    $insumo->en_reparacion=$insumo->en_reparacion-$incidencia->cantidad;
+                                if ($incidencia->tipo=="Usados") {
+                                    $insumo->usados=$insumo->usados-$incidencia->cantidad;
                                     $insumo->save();
                                 }else{
                                     $insumo->inservible=$insumo->inservible-$incidencia->cantidad;
@@ -197,9 +197,9 @@ class IncidenciasController extends Controller
                                 $insumo->in_almacen=$insumo->in_almacen-$request->cantidad;
                                 $insumo->disponibles=$insumo->disponibles-$request->cantidad;
 
-                            if ($request->tipo=="En Reparación") {
+                            if ($request->tipo=="Usados") {
 
-                                $insumo->en_reparacion=$insumo->en_reparacion+$request->cantidad;
+                                $insumo->usados=$insumo->usados+$request->cantidad;
                                 $insumo->save();
                             }else{
                                 $insumo->inservible=$insumo->inservible+$request->cantidad;
@@ -215,7 +215,7 @@ class IncidenciasController extends Controller
                                 $incidencia->fecha_incidencia=$request->fecha_incidencia;
                                 $incidencia->save();
                                 
-                        if ($request->tipo=="En Reparación") {
+                        if ($request->tipo=="Usados") {
                         flash('<i class="fa fa-check-circle-o"></i> Insumo(s) actualizado EN REPARACIÓN exitosamente!')->warning()->important();
                         return redirect()->to('incidencias');
                         } else {
@@ -252,9 +252,9 @@ class IncidenciasController extends Controller
                 $insumo->in_almacen=$insumo->in_almacen+$cantidad;
                 $insumo->disponibles=$insumo->disponibles+$cantidad;
 
-                if ($tipo=="En Reparación") {
+                if ($tipo=="Usados") {
 
-                $insumo->en_reparacion=$insumo->en_reparacion-$cantidad;
+                $insumo->usados=$insumo->usados-$cantidad;
                     $insumo->save();
                 }else{
                     $insumo->inservible=$insumo->inservible-$cantidad;
@@ -303,8 +303,8 @@ class IncidenciasController extends Controller
                 $insumo->in_almacen=$insumo->in_almacen+$cantidad;
                 $insumo->disponibles=$insumo->disponibles+$cantidad;
 
-                if ($tipo=="En Reparación") {
-                    $insumo->en_reparacion=$insumo->en_reparacion-$cantidad;
+                if ($tipo=="Usados") {
+                    $insumo->usados=$insumo->usados-$cantidad;
                     $insumo->save();
                 }else{
                     $insumo->inservible=$insumo->inservible-$cantidad;

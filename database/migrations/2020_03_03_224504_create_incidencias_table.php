@@ -17,7 +17,7 @@ class CreateIncidenciasTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_insumo');
             $table->integer('cantidad');
-            $table->enum('tipo',['En Reparación','Inservible']);
+            $table->enum('tipo',['Usados','Inservible']);
             $table->text('observacion')->nullable();
             $table->date('fecha_incidencia');
 

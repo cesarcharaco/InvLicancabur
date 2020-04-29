@@ -8,7 +8,7 @@ class Insumos extends Model
 {
     protected $table='insumos';
 
-    protected $fillable=['producto','descripcion','serial','modelo','modulo','id_gerencia','ubicacion','existencia','in_almacen','out_almacen','disponibles','entregados','en_reparacion','inservible'];
+    protected $fillable=['producto','descripcion','serial','modelo','marca','id_gerencia','ubicacion','existencia','in_almacen','out_almacen','disponibles','entregados','usados','inservible'];
 
     public function gerencias()
     {

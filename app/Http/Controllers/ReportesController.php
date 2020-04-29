@@ -34,7 +34,7 @@ class ReportesController extends Controller
         $out_almacen=0;
         $disponibles=0;
         $entregados=0;
-        $en_reparacion=0;
+        $usados=0;
         $inservibles=0;
         $insumos=Insumos::all();
         foreach ($insumos as $key) {
@@ -42,19 +42,19 @@ class ReportesController extends Controller
             $out_almacen+=$key->out_almacen;
             $disponibles+=$key->disponibles;
             $entregados+=$key->entregados;
-            $en_reparacion+=$key->en_reparacion;
+            $usados+=$key->usados;
             $inservibles+=$key->inservible;
         }
         $hoy=date('Y-m-d');
-        $en_reparacion2=0;
+        $usados2=0;
         $inservibles2=0;
         $entregados2=0;
         $out_almacen2=0;
         $incidencias=Incidencias::where('fecha_incidencia',$hoy)->get();
 
         foreach ($incidencias as $key) {
-            if ($key->tipo=="En Reparación") {
-                $en_reparacion2+=$key->cantidad;
+            if ($key->tipo=="Usados") {
+                $usados2+=$key->cantidad;
             } else {
                 $inservibles2+=$key->cantidad;
             }
@@ -71,11 +71,11 @@ class ReportesController extends Controller
             
         }
 
-        /*$en_reparacion2=0.1;
+        /*$usados2=0.1;
         $inservibles2=0.1;
         $entregados2=0;
         $out_almacen2=3;*/
-        return view('graficas.index', compact('fecha_actual','gerencias','in_almacen','out_almacen','disponibles','entregados','en_reparacion','inservibles','en_reparacion2','inservibles2','out_almacen2','entregados2'));
+        return view('graficas.index', compact('fecha_actual','gerencias','in_almacen','out_almacen','disponibles','entregados','usados','inservibles','usados2','inservibles2','out_almacen2','entregados2'));
     }
 
     /**
@@ -124,7 +124,7 @@ class ReportesController extends Controller
         $out_almacen=0;
         $disponibles=0;
         $entregados=0;
-        $en_reparacion=0;
+        $usados=0;
         $inservibles=0;
         $insumos=Insumos::all();
         foreach ($insumos as $key) {
@@ -132,19 +132,19 @@ class ReportesController extends Controller
             $out_almacen+=$key->out_almacen;
             $disponibles+=$key->disponibles;
             $entregados+=$key->entregados;
-            $en_reparacion+=$key->en_reparacion;
+            $usados+=$key->usados;
             $inservibles+=$key->inservible;
         }
         $hoy=date('Y-m-d');
-        $en_reparacion2=0;
+        $usados2=0;
         $inservibles2=0;
         $entregados2=0;
         $out_almacen2=0;
         $incidencias=Incidencias::where('id','<>',0)->whereBetween('fecha_incidencia',[$request->desde,$request->hasta])->get();
 
         foreach ($incidencias as $key) {
-            if ($key->tipo=="En Reparación") {
-                $en_reparacion2+=$key->cantidad;
+            if ($key->tipo=="Usados") {
+                $usados2+=$key->cantidad;
             } else {
                 $inservibles2+=$key->cantidad;
             }
@@ -162,7 +162,7 @@ class ReportesController extends Controller
         }
         }
 
-        return view('graficas.show',compact('in_almacen','out_almacen','disponibles','entregados','en_reparacion','inservibles','out_almacen2','entregados2','en_reparacion2','inservibles2'));
+        return view('graficas.show',compact('in_almacen','out_almacen','disponibles','entregados','usados','inservibles','out_almacen2','entregados2','usados2','inservibles2'));
     }
 
     /**

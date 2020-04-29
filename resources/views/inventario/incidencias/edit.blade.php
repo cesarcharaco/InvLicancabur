@@ -80,7 +80,7 @@
                   <div class="form-group">
                     <label class="control-label">Tipo de Incidencia <b style="color: red;">*</b></label>
                     <select name="tipo" id="tipo" title="Seleccione el tipo de Incidencia" class="form-control">
-                      <option value="En Reparación" @if($incidencia->tipo=="En Reparación") selected="selected"  @endif >En Reparación</option>
+                      <option value="Usados" @if($incidencia->tipo=="Usados") selected="selected"  @endif >Usados</option>
                       <option value="Inservible" @if($incidencia->tipo=="Inservible") selected="selected" @endif >Inservible</option>
                     </select>
                   </div>

@@ -26,7 +26,7 @@ class InsumosRequest extends FormRequest
         return [
             'producto' => 'required',
             'descripcion' => 'required',
-            'serial' => 'required|unique:insumos',
+            'serial' => 'required',
             'ubicacion' => 'required',
             'existencia' => 'required|numeric',
             'in_almacen' => 'required|numeric',
@@ -41,7 +41,6 @@ class InsumosRequest extends FormRequest
             'producto.required' => 'El nombre del insumo es obligatorio',
             'descripcion.required' => 'La Descripción del insumo es obligatoria',
             'serial.required' => 'El Serial es obligatorio',
-            'serial.unique' => 'El Serial ya se encuentra registrado',
             'ubicacion.required' => 'La Ubicación del insumo es obligatoria',
             'existencia.required' => 'La Existencia del insumo es obligatoria',
             'in_almacen.required' => 'La Cantidad que hay en el almacen es obligatoria',

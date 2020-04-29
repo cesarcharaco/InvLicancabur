@@ -64,7 +64,7 @@
 <script type="text/javascript" src="{{ asset('js/plugins/chart.js') }}"></script>
 <script type="text/javascript">
   var data = {
-    labels: ["Prestados", "Entregados", "En Reparación", "Inservibles"],
+    labels: ["Prestados", "Entregados", "Usados", "Inservibles"],
     datasets: [
       {
         label: "My Second dataset",
@@ -107,7 +107,7 @@
       value: <?=$en_reparacion?>,
       color: "#3BAFDA",
       highlight: "#228B22",
-      label: "En Reparación"
+      label: "Usados"
     },
     {
       value: <?=$inservibles?>,
@@ -123,7 +123,7 @@
       value: <?=$en_reparacion2?>,
       color:"#F6BB42",
       highlight: "#F7C55F",
-      label: "En Reparación"
+      label: "Usados"
     },
     {
       value: <?=$inservibles2?>,

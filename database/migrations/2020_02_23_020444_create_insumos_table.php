@@ -17,9 +17,9 @@ class CreateInsumosTable extends Migration
             $table->bigIncrements('id');
             $table->string('producto');
             $table->text('descripcion');
-            $table->string('serial')->unique();
+            $table->string('serial');
             $table->string('modelo')->nullable();
-            $table->string('modulo')->nullable();
+            $table->string('marca')->nullable();
             $table->unsignedBigInteger('id_gerencia');
             $table->string('ubicacion');
             $table->integer('existencia')->default(0);
@@ -27,7 +27,7 @@ class CreateInsumosTable extends Migration
             $table->integer('out_almacen')->default(0);
             $table->integer('disponibles')->default(0);
             $table->integer('entregados')->nullable();
-            $table->integer('en_reparacion')->nullable();
+            $table->integer('usados')->nullable();
             $table->integer('inservible')->nullable();
 
             $table->foreign('id_gerencia')->references('id')->on('gerencias')->onDelete('cascade');

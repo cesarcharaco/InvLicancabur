@@ -56,7 +56,7 @@
                   <th>Descripción</th>
                   <th>Serial</th>
                   <th>Modelo</th>
-                  <th>Módulo</th>
+                  <th>Marca</th>
                   <th>Gerencia</th>
                   <th>Ubicación</th>
                   <th>Existencia</th>
@@ -64,18 +64,18 @@
                   <th>Fuera de Almacén</th>
                   <th>Disponibles</th>
                   {{-- <th>Entregados</th> --}}
-                  {{-- <th>En Reparación</th> --}}
+                  {{-- <th>Usados</th> --}}
                   <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach($insumos as $key)
-                <tr title="Entregados: {{ $key->entregados }} - En Reparación: {{ $key->en_reparacion }} - InserviBles: {{ $key->inservible }}">
+                <tr data-toggle="tooltip" data-placement="top"  title="Entregados: {{ $key->entregados }} - Usados: {{ $key->usados }} - Inservibles: {{ $key->inservible }}">
                   <td>{{ $key->producto }}</td>
                   <td>{{ $key->descripcion }}</td>
                   <td>{{ $key->serial }}</td>
                   <td>{{ $key->modelo }}</td>
-                  <td>{{ $key->modulo }}</td>
+                  <td>{{ $key->marca }}</td>
                   <td>{{ $key->gerencias->gerencia }}</td>
                   <td>{{ $key->ubicacion }}</td>
                   <td>{{ $key->existencia }}</td>
@@ -83,12 +83,12 @@
                   <td>{{ $key->out_almacen }}</td>
                   <td>{{ $key->disponibles }}</td>
                   {{-- <td>{{ $key->entregados }}</td> --}}
-                  {{-- <td>{{ $key->en_reparacion }}</td> --}}
+                  {{-- <td>{{ $key->usados }}</td> --}}
 
                   <td>
                     <a href="{{ route('insumos.edit',$key->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Editar Insumo"><i class="fa fa-edit"></i></a>
                     <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminar_insumo" onclick="eliminar('{{ $key->id }}')"><i class="fa fa-trash"></i></a>
-                    <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#detalles" onclick="detalles('{{ $key->producto }}','{{ $key->descripcion }}','{{ $key->serial }}','{{ $key->modelo }}','{{ $key->modulo }}','{{ $key->gerencias->gerencia }}','{{ $key->ubicacion }}','{{ $key->existencia }}','{{ $key->in_almacen }}','{{ $key->out_almacen }}','{{ $key->disponibles }}','{{ $key->entregados }}','{{ $key->en_reparacion }}','{{ $key->inservible }}')"><i class="fa fa-eye"></i></a>
+                    <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#detalles" onclick="detalles('{{ $key->producto }}','{{ $key->descripcion }}','{{ $key->serial }}','{{ $key->modelo }}','{{ $key->marca }}','{{ $key->gerencias->gerencia }}','{{ $key->ubicacion }}','{{ $key->existencia }}','{{ $key->in_almacen }}','{{ $key->out_almacen }}','{{ $key->disponibles }}','{{ $key->entregados }}','{{ $key->usados }}','{{ $key->inservible }}')"><i class="fa fa-eye"></i></a>
 
                   </td>
                 </tr>
@@ -170,16 +170,16 @@
                     <td><span id="out_almacen"></span></td>
                   </tr>
                   <tr>
-                    <th>Módulo</th>
-                    <td><span id="modulo"></span></td>
+                    <th>Marca</th>
+                    <td><span id="marca"></span></td>
                     <th>Disponibles</th>
                     <td><span id="disponibles"></span></td>
                   </tr>
                   <tr>
                     <th>Gerencia</th>
                     <td><span id="gerencia"></span></td>
-                    <th>En Reparación</th>
-                    <td><span id="en_reparacion"></span></td>
+                    <th>Usados</th>
+                    <td><span id="usados"></span></td>
                   </tr>
                   <tr>
                     <th>Ubicación</th>
@@ -206,12 +206,12 @@
     $("#id_insumo").val(id_insumo);
   }
 
-  function detalles(producto,descripcion,serial,modelo,modulo,gerencia,ubicacion,existencia,in_almacen,out_almacen,disponibles,entregados,en_reparacion,inservible) {
+  function detalles(producto,descripcion,serial,modelo,marca,gerencia,ubicacion,existencia,in_almacen,out_almacen,disponibles,entregados,usados,inservible) {
     $("#producto").text(producto);
     $("#descripcion").text(descripcion);
     $("#serial").text(serial);
     $("#modelo").text(modelo);
-    $("#modulo").text(modulo);
+    $("#marca").text(marca);
     $("#gerencia").text(gerencia);
     $("#ubicacion").text(ubicacion);
     $("#existencia").text(existencia);
@@ -219,7 +219,7 @@
     $("#out_almacen").text(out_almacen);
     $("#disponibles").text(disponibles);
     $("#entregados").text(entregados);
-    $("#en_reparacion").text(en_reparacion);
+    $("#usados").text(usados);
     $("#inservible").text(inservible);
   }
 </script>

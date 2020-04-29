@@ -11,12 +11,12 @@
 			<tr>
 				<th>Nro.</th>
 				<th>Insumo</th>
-				<th>Módulo</th>
+				<th>Marca</th>
 				<th>En el almacén</th>
 				<th>Fuera del almacén</th>
 				<th>Disponibles</th>
 				<th>Entregados</th>
-				<th>En reparación</th>
+				<th>Usados</th>
 				<th>Inservible</th>
 			</tr>
 		</thead>
@@ -26,12 +26,12 @@
 				<tr>
 					<td>{{$num=$num+1}}</td>
 					<td>{{$key->producto}}</td>
-					<td>{{$key->modulo}}</td>
+					<td>{{$key->marca}}</td>
 					<td>{{$key->in_almacen}}</td>
 					<td>{{$key->out_almacen}}</td>
 					<td>{{$key->disponibles}}</td>
 					<td>{{$key->entregados}}</td>
-					<td>{{$key->en_reparacion}}</td>
+					<td>{{$key->usados}}</td>
 					<td>{{$key->inservible}}</td>
 				</tr>
 			@endforeach()
@@ -67,7 +67,7 @@
 				<tr>
 					<td>{{$num=$num+1}}</td>
 					<td>{{$key->insumos->producto}}</td>
-					<td>{{$key->insumos->modulo}}</td>
+					<td>{{$key->insumos->marca}}</td>
 					<td style="background-color: yellow;">{{$key->tipo}}</td>
 					<td style="background-color: aqua;"></td>
 					<td style="background-color: yellow;">{{$key->solicitantes->nombres}} - {{$key->solicitantes->rut}}</td>
@@ -81,7 +81,7 @@
 				<tr>
 					<td>{{$num=$num+1}}</td>
 					<td>{{$key->insumos->producto}}</td>
-					<td>{{$key->insumos->modulo}}</td>
+					<td>{{$key->insumos->marca}}</td>
 					<td style="background-color: yellow;">{{$key->tipo}}</td>
 					<td style="background-color: aqua;"></td>
 					<td> --- </td>

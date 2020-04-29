@@ -77,7 +77,7 @@
                   <div class="form-group">
                     <label class="control-label">Tipo de Incidencia <b style="color: red;">*</b></label>
                     <select name="tipo" id="tipo" title="Seleccione el tipo de Incidencia" class="form-control">
-                      <option value="En Reparación">En Reparación</option>
+                      <option value="Usados">Usados</option>
                       <option value="Inservible">Inservible</option>
                     </select>
                   </div>

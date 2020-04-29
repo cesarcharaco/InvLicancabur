@@ -86,12 +86,12 @@
       </div>
       <!-- <div class="col-md-6">
         <div class="tile">
-          <h3 class="tile-title">Status de Incidencias/Préstamos de Hoy<?=$en_reparacion2?>|<?=$inservibles2?>|<?=$out_almacen2?>|<?=$entregados2?> </h3>
-          @if($en_reparacion2==0 && $out_almacen2==0 && $entregados2==0 && $inservibles2==0)
+          <h3 class="tile-title">Status de Incidencias/Préstamos de Hoy<?=$usados2?>|<?=$inservibles2?>|<?=$out_almacen2?>|<?=$entregados2?> </h3>
+          @if($usados2==0 && $out_almacen2==0 && $entregados2==0 && $inservibles2==0)
           <span><b>No se han realizado hoy</b></span>
           @endif
           <div class="embed-responsive embed-responsive-16by9">
-            @if($en_reparacion2!=0 && $out_almacen2!=0 && $entregados2!=0 && $inservibles2!=0)
+            @if($usados2!=0 && $out_almacen2!=0 && $entregados2!=0 && $inservibles2!=0)
             <canvas class="embed-responsive-item" id="pieChartDemo"></canvas>
             @endif
           </div>
@@ -116,7 +116,7 @@
 <script type="text/javascript" src="{{ asset('js/plugins/chart.js') }}"></script>
 <script type="text/javascript">
   var data = {
-    labels: ["Prestados", "Entregados", "En Reparación", "Inservibles"],
+    labels: ["Prestados", "Entregados", "Usados", "Inservibles"],
     datasets: [
       {
         label: "My Second dataset",
@@ -126,7 +126,7 @@
         pointStrokeColor: "#fff",
         pointHighlightFill: "#fff",
         pointHighlightStroke: "rgba(151,187,205,1)",
-        data: [<?=$out_almacen2?>, <?=$entregados2?>,<?=$en_reparacion2?>,<?=$inservibles2?>]
+        data: [<?=$out_almacen2?>, <?=$entregados2?>,<?=$usados2?>,<?=$inservibles2?>]
       }
     ]
   };
@@ -156,10 +156,10 @@
       label: "Entregados"
     },
     {
-      value: <?=$en_reparacion?>,
+      value: <?=$usados?>,
       color: "#3BAFDA",
       highlight: "#228B22",
-      label: "En Reparación"
+      label: "Usados"
     },
     {
       value: <?=$inservibles?>,
@@ -172,10 +172,10 @@
 
   var pdata1 = [
     {
-      value: <?=$en_reparacion2?>,
+      value: <?=$usados2?>,
       color:"#F6BB42",
       highlight: "#F7C55F",
-      label: "En Reparación"
+      label: "Usados"
     },
     {
       value: <?=$inservibles2?>,

@@ -66,7 +66,7 @@
                 <div class="col-md-3">                  
                   <div class="form-group">
                     <label class="control-label">Serial <b style="color: red;">*</b></label>
-                    <input class="form-control" type="text" placeholder="Ej: THV123" name="serial" id="serial" title="Ingrese el serial del Insumo" required="required" value="{{ old('serial') }}">
+                    <input class="form-control" data-toggle="tooltip" data-placement="top" type="text" placeholder="Ej: THV123" name="serial" id="serial" title="Ingrese el serial del Insumo, en caso de no tener ingrese S/N" required="required" value="{{ old('serial') }}">
                   </div>
                 </div> 
                 <div class="col-md-3">                  
@@ -77,8 +77,8 @@
                 </div>
                 <div class="col-md-3">                  
                   <div class="form-group">
-                    <label class="control-label">Módulo <b style="color: red;">*</b></label>
-                    <input class="form-control" type="text" placeholder="Ej: Almacenamiento" name="modulo" id="modulo" title="Ingrese el módulo del Insumo" required="required" value="{{ old('modulo') }}">
+                    <label class="control-label">Marca <b style="color: red;">*</b></label>
+                    <input class="form-control" type="text" placeholder="Ej: Almacenamiento" name="marca" id="marca" title="Ingrese el módulo del Insumo" required="required" value="{{ old('marca') }}">
                   </div>
                 </div> 
               </div>
@@ -133,8 +133,8 @@
                 </div>
                 <div class="col-md-3">                  
                   <div class="form-group">
-                    <label class="control-label">En Reparación </label>
-                    <input class="form-control" type="number"  placeholder="Ej: 300" name="en_reparacion" id="en_reparacion" title="Ingrese la cantidad del insumo que está en reparación" value="{{ old('en_reparacion') }}">
+                    <label class="control-label">Usados </label>
+                    <input class="form-control" type="number"  placeholder="Ej: 300" name="usados" id="usados" title="Ingrese la cantidad del insumo que está en reparación" value="{{ old('usados') }}">
                   </div>
                 </div> 
               </div>
