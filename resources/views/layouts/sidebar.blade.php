@@ -1,8 +1,9 @@
 <!-- Sidebar menu-->
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
-  <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="{{ asset('images/logo_1.png') }}" style="border-radius: 5px;" alt="Logo de la empresa">
+  <div class="app-sidebar__user"><img style="border-radius: 0px !important" class="app-sidebar__user-avatar" src="{{ asset('images/logo_1.png') }}"  alt="Logo de la empresa">
     <div>
+      {{-- <img class="app-sidebar__user-avatar" src="{{ asset('images/logo_3.png') }}" style="border-radius: 5px;" width="105px" height="106px" alt="Logo de la empresa"> --}}
       <p class="app-sidebar__user-name">INVSyst</p>
       <p class="app-sidebar__user-designation">Inventario</p>
     </div>
